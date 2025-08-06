@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wordle Solver</title>
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='root.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='main.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="nav-content">
+        <h1>Wordle Solver</h1>
+        <a href="/stats" class="nav-link" title="Statistics">
+          <i class="fas fa-chart-line section-icon"></i>Statistics
+        </a>
+      </div>
+    </nav>
+
+    <main class="wrapper">
+      <!-- Directions Sidebar -->
+      <aside class="sidebar">
+        <h3><i class="fas fa-info-circle section-icon"></i> Directions</h3>
+        <p>
+          This Wordle Solver helps you narrow down possible words based on your
+          guesses in the
+          <a
+            href="https://www.nytimes.com/games/wordle/index.html"
+            target="_blank"
+            >NYT Wordle Game</a
+          >.
+        </p>
+        <ol>
+          <li>Enter the <b>5-letter word</b> you guessed below.</li>
+          <li>
+            For each letter, select its color feedback:
+            <ul>
+              <li>
+                <div class="color-square gray-square"></div>
+                <b>Gray</b>: Letter is <b>not</b> in the word.
+              </li>
+              <li>
+                <div class="color-square yellow-square"></div>
+                <b>Yellow</b>: Letter is in the <i>wrong</i> position.
+              </li>
+              <li>
+                <div class="color-square green-square"></div>
+                <b>Green</b>: Letter is in the <b>correct</b> position.
+              </li>
+            </ul>
+          </li>
+          <li>Click <b>"Find Words"</b> to filter the word list.</li>
+          <li>Repeat the process until you solve the puzzle!</li>
+          <li>If you want to start over, click <b>"Reset Game"</b>.</li>
+        </ol>
+      </aside>
+
+      <section class="main-content">
+        <!-- Guess Input Section -->
+        <div class="section">
+          <div class="inputs">
+            <h3>
+              <i class="fas fa-pen-to-square section-icon"></i> Enter Guesses
+            </h3>
+            <div class="word-count">
+              <p>
+                Possible solutions remaining: <span>{{ possible|length }}</span>
+              </p>
+            </div>
+            <form method="post">
+              <div class="guess-form">
+                <div class="guess-grid">
+                  {% for col in range(5) %}
+                  <div class="guess-box">
+                    <input
+                      type="text"
+                      class="letter-input"
+                      id="letter_{{ col }}"
+                      name="letter_{{ col }}"
+                      maxlength="1"
+                      autocomplete="off"
+                      required
+                    />
+                    <select name="color_{{ col }}" class="color-select">
+                      <option value="gray">⬛</option>
+                      <option value="yellow">🟨</option>
+                      <option value="green">🟩</option>
+                    </select>
+                  </div>
+                  {% endfor %}
+                </div>
+                <button type="submit" class="submit-button">
+                  <i class="fas fa-search section-icon"></i> Find Words
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Previous Guesses -->
+          <div class="inputs">
+            <h3>
+              <i class="fas fa-clipboard section-icon"></i> Previous Guesses
+            </h3>
+            <div class="previous-box">
+              {% if previous_guesses %} {% for guess in previous_guesses %}
+              <p class="guess-row">
+                {% for letter, color in guess %}
+                <span class="guess-letter {{ color }}">{{ letter }}</span>
+                {% endfor %}
+              </p>
+              {% endfor %} {% else %}
+              <div class="no-guesses">
+                <p>No previous guesses yet.</p>
+              </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <!-- Results Section -->
+        <div class="section">
+          <div class="results">
+            <h3><i class="fas fa-list section-icon"></i> Possible Words</h3>
+            <div class="box">
+              {% for word in possible %}
+              <p>{{ word }}</p>
+              {% endfor %}
+            </div>
+          </div>
+
+          <div class="results">
+            <h3>
+              <i class="fas fa-star section-icon"></i> Best Suggested Words
+            </h3>
+            <div class="box">
+              {% for word in suggestions %}
+              <p>{{ word }}</p>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+
+        <form method="post" action="/reset">
+          <button type="submit" class="reset-button">
+            <i class="fas fa-redo section-icon"></i> Reset Game
+          </button>
+        </form>
+      </section>
+    </main>
+
+    <footer>
+      <div>
+        <a href="https://github.com/jennashinn" target="_blank" title="GitHub">
+          <i class="fab fa-github"></i>
+        </a>
+      </div>
+    </footer>
+
+    <script>
+      const WORDLE_COLORS = {
+        gray: "#787c7e",
+        yellow: "#c9b458",
+        green: "#6aaa64",
+      };
+
+      document.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll("select").forEach((select, index) => {
+          const inputBox = document.getElementById(`letter_${index}`);
+          if (inputBox) {
+            select.addEventListener("change", function () {
+              const selectedColor = this.value;
+              inputBox.style.backgroundColor = WORDLE_COLORS[selectedColor];
+              inputBox.style.borderColor = WORDLE_COLORS[selectedColor];
+              inputBox.style.color = "white";
+            });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

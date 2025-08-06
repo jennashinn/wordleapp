@@ -1,0 +1,212 @@
+/* ====================
+   ROOT.CSS CLEANUP
+   ==================== */
+:root {
+  /* === Colors === */
+  --primary-color: #2e4456;
+  --primary-light: #6d8594;
+  --primary-dark: rgba(46, 68, 86, 0.1);
+  --accent-color: #aacbe1;
+  --accent-muted: #a5b4c4;
+
+  --reset-button: #b63d3d;
+  --reset-hover: #a12f2f;
+  --button-color: #2f6f8f;
+  --button-hover: #25566e;
+
+  --neutral-000: #fdfdfd;
+  --neutral-100: #fafbfa;
+  --neutral-200: #f5f6f4;
+  --neutral-300: #f1f6f9;
+  --neutral-400: #dbe4ea;
+  --neutral-500: #c4ccd5;
+  --neutral-600: #97a1ad;
+  --neutral-700: #5e6c7b;
+  --neutral-800: #1f2a38;
+
+  --background-color: var(--neutral-200);
+  --input-card-color: var(--neutral-000);
+  --sidebar-color: var(--neutral-400);
+  --navbar-bg: var(--primary-color);
+  --box-color: var(--neutral-100);
+
+  --text-color: var(--neutral-800);
+  --subtle-text: var(--neutral-700);
+  --navbar-text: var(--neutral-300);
+  --navbar-hover: var(--accent-color);
+
+  --border-color: var(--neutral-500);
+  --border-strong: var(--neutral-600);
+  --card-shadow: rgba(46, 68, 86, 0.06);
+
+  --wordle-gray: #787c7e;
+  --wordle-yellow: #c9b458;
+  --wordle-green: #6aaa64;
+
+  --nav-height: 64px;
+  --border-radius: 8px;
+  --border-radius-lg: 12px;
+
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+  --font-primary: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Inter, "Helvetica Neue", Arial, sans-serif;
+  --transition-speed: 0.2s;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-primary);
+  font-weight: 400;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 500;
+}
+
+b {
+  font-weight: 600;
+}
+
+.section-icon {
+  font-size: 1.2rem;
+  margin-right: 0.5rem;
+  color: var(--primary-color);
+}
+
+/* ========== Navigation ========== */
+.navbar {
+  background-color: var(--navbar-bg);
+  color: var(--navbar-text);
+  padding: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.nav-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--navbar-text);
+}
+
+.nav-content h1 {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.nav-link {
+  color: var(--navbar-text);
+  font-weight: 500;
+  font-size: 1rem;
+  margin-left: 1.5rem;
+  text-decoration: none;
+  transition: color var(--transition-speed);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.nav-link .section-icon {
+  font-size: 1.2rem;
+  margin-right: 0.5rem;
+  color: inherit;
+  transition: color var(--transition-speed);
+}
+
+.nav-link:hover {
+  color: var(--accent-color);
+}
+
+.nav-link:hover .section-icon {
+  color: var(--accent-color);
+}
+
+/* ========== Layout Wrappers ========== */
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: var(--spacing-lg);
+  max-width: 1300px;
+  margin: var(--spacing-lg) auto;
+  padding: 0 var(--spacing-md);
+}
+
+.sidebar {
+  background: var(--sidebar-color);
+  padding: var(--spacing-lg);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-sm);
+  height: fit-content;
+}
+
+.sidebar h3 {
+  margin-bottom: var(--spacing-md);
+  color: var(--primary-color);
+  font-weight: 500;
+}
+
+.sidebar a {
+  color: var(--neutral-700);
+  text-decoration: none;
+}
+
+.sidebar a:hover {
+  text-decoration: underline;
+}
+
+.sidebar p,
+.sidebar li {
+  color: var(--text-color);
+  margin-bottom: var(--spacing-sm);
+}
+
+.sidebar ul,
+.sidebar ol {
+  padding-left: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
+}
+
+.sidebar li div {
+  margin: var(--spacing-xs) 0;
+}
+
+.gray-square {
+  background-color: var(--wordle-gray);
+}
+
+.yellow-square {
+  background-color: var(--wordle-yellow);
+}
+
+.green-square {
+  background-color: var(--wordle-green);
+}

@@ -1,0 +1,241 @@
+/* ====================
+   MAIN.CSS CLEANUP — VANILLA CSS VERSION
+   ==================== */
+
+/* === Utility Classes === */
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.box-shadow-sm {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+.box-scrollable {
+  height: 250px;
+  overflow-y: auto;
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius);
+  background: var(--input-card-color);
+}
+
+/* === Main Content === */
+.main-content {
+  margin-top: 0;
+  background: var(--input-card-color);
+  padding: var(--spacing-lg);
+  border-radius: var(--border-radius-lg);
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-sm);
+}
+
+.section {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-lg);
+  padding: 0 var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+  border-radius: var(--border-radius);
+  animation: fadeIn 0.3s ease-out;
+}
+
+.inputs,
+.results {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.word-count {
+  display: inline-block;
+  background: var(--primary-dark);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--border-radius);
+  color: var(--primary-color);
+  font-weight: 400;
+  margin: var(--spacing-md) 0;
+}
+
+.guess-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.guess-grid {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  margin: var(--spacing-lg) 0;
+  width: 100%;
+}
+
+.guess-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.letter-input {
+  font-family: var(--font-primary);
+  width: 52px;
+  height: 52px;
+  font-size: 1.5rem;
+  font-weight: 500;
+  text-align: center;
+  text-transform: uppercase;
+  border-radius: var(--border-radius);
+  background-color: var(--background-color);
+  border: 1px solid var(--border-color);
+  transition: all var(--transition-speed);
+}
+
+.letter-input:hover,
+.color-select:hover {
+  border-color: var(--primary-color);
+}
+
+.letter-input:focus,
+.color-select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px var(--primary-dark);
+}
+
+.color-select {
+  width: 52px;
+  padding: 4px;
+  font-size: 1.25rem;
+  text-align: center;
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--border-radius);
+  background-color: var(--background-color);
+  cursor: pointer;
+  transition: all var(--transition-speed);
+}
+
+.color-square {
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  margin-right: 8px;
+  vertical-align: middle;
+  border-radius: 4px;
+}
+
+.guess-letter {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  border-radius: 5px;
+  padding: 0.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: 1.25rem;
+  margin-bottom: 0.1rem;
+  color: white;
+  font-family: var(--font-primary);
+  text-transform: uppercase;
+}
+
+.guess-letter.gray {
+  background-color: var(--wordle-gray);
+}
+
+.guess-letter.yellow {
+  background-color: var(--wordle-yellow);
+}
+
+.guess-letter.green {
+  background-color: var(--wordle-green);
+}
+
+.previous-box {
+  height: 250px;
+  overflow-y: auto;
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius);
+  background: var(--input-card-color);
+  text-transform: uppercase;
+}
+
+.no-guesses {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  color: var(--subtle-text);
+  font-weight: 500;
+  text-transform: none;
+}
+
+.box {
+  height: 250px;
+  overflow-y: auto;
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius);
+  background: var(--box-color);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary-light) var(--background-color);
+}
+
+.box p {
+  text-transform: uppercase;
+  font-weight: 400;
+  padding: var(--spacing-xs) 0;
+  color: var(--text-color);
+}
+
+button {
+  font-family: var(--font-primary);
+  color: #ffffff;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: var(--border-radius);
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-speed);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin: var(--spacing-lg) auto;
+}
+
+button .section-icon {
+  color: #ffffff;
+}
+
+button.submit-button {
+  background-color: var(--button-color);
+}
+
+button.submit-button:hover {
+  background-color: var(--button-hover);
+}
+
+button.reset-button {
+  background-color: var(--reset-button);
+}
+
+button.reset-button:hover {
+  background-color: var(--reset-hover);
+}
